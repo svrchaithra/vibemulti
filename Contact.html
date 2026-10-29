@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIBE — Contact Us</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0c0c;--bg2:#141414;--surface:#1a1a1a;--surface2:#222222;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--text:#f5f0e8;--text2:rgba(245,240,232,0.5);--gold:#c9a84c;--gold2:#e8c97a;--red:#e05252;--green:#52c97a;--r:6px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(12,12,12,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold);letter-spacing:4px;text-decoration:none;}
+.nav-links{display:flex;gap:6px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text2);font-size:13px;font-weight:500;padding:8px 16px;border-radius:6px;transition:all .2s;letter-spacing:.5px;}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--surface2);}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+.cart-pill{display:flex;align-items:center;gap:8px;background:var(--gold);color:#0c0c0c;border:none;border-radius:8px;padding:9px 20px;font-family:'Jost',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;}
+.cart-pill:hover{background:var(--gold2);}
+.cart-pill .badge{background:#0c0c0c;color:var(--gold);border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 28px;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:14px;font-weight:600;transition:all .25s;border-radius:var(--r);text-decoration:none;letter-spacing:.3px;}
+.btn-gold{background:var(--gold);color:#0c0c0c;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,.3);}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border2);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+
+/* PAGE HERO */
+.page-hero{padding:120px 48px 60px;background:var(--bg2);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.08) 0%,transparent 70%);top:-100px;right:-50px;pointer-events:none;}
+.breadcrumb{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--text2);margin-bottom:16px;}
+.breadcrumb a{color:var(--text2);text-decoration:none;}
+.breadcrumb a:hover{color:var(--gold);}
+.breadcrumb .sep{color:var(--border2);}
+.eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:900;line-height:1.05;margin-bottom:14px;}
+.page-hero h1 em{font-style:italic;color:var(--gold);}
+.page-hero p{color:var(--text2);font-size:17px;max-width:480px;line-height:1.7;}
+
+/* CONTACT LAYOUT */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1300px;margin:0 auto;padding:0;}
+
+/* FORM SECTION */
+.form-section{padding:60px 48px;border-right:1px solid var(--border);}
+.form-section h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:8px;}
+.form-section>p{color:var(--text2);font-size:14px;margin-bottom:36px;}
+
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:20px;}
+.form-group label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);}
+.form-group input,.form-group textarea,.form-group select{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:13px 16px;
+  color:var(--text);
+  font-family:'Jost',sans-serif;
+  font-size:14px;
+  outline:none;
+  transition:border-color .2s,background .2s;
+}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{
+  border-color:var(--gold);
+  background:var(--surface2);
+}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text2);}
+.form-group textarea{resize:vertical;min-height:130px;line-height:1.6;}
+.form-group select option{background:var(--surface);color:var(--text);}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+.form-note{font-size:12px;color:var(--text2);margin-top:4px;}
+
+/* SUBJECT PILLS */
+.subject-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+.spill{padding:7px 16px;border-radius:20px;background:var(--surface2);border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Jost',sans-serif;}
+.spill:hover,.spill.active{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.5);color:var(--gold);}
+
+/* Rating */
+.rating-stars{display:flex;gap:4px;font-size:28px;cursor:pointer;margin-bottom:8px;}
+.rating-stars span{color:var(--surface2);transition:color .15s;}
+.rating-stars span.lit,.rating-stars span:hover~span.lit{color:#e8c97a;}
+.rating-stars:hover span{color:#e8c97a;}
+
+/* SUCCESS STATE */
+.success-msg{display:none;text-align:center;padding:48px 24px;}
+.success-ring{width:80px;height:80px;border-radius:50%;background:rgba(82,201,122,.1);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 24px;box-shadow:0 0 40px rgba(82,201,122,.15);animation:pop .5s cubic-bezier(.175,.885,.32,1.275);}
+@keyframes pop{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+.success-msg h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:10px;}
+.success-msg p{color:var(--text2);font-size:15px;}
+
+/* INFO SECTION */
+.info-section{padding:60px 48px;background:var(--bg2);}
+.info-section h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:8px;}
+.info-section>p{color:var(--text2);font-size:14px;margin-bottom:36px;}
+
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;display:flex;gap:18px;align-items:flex-start;transition:border-color .2s;}
+.info-card:hover{border-color:rgba(201,168,76,.3);}
+.ic-icon{width:46px;height:46px;border-radius:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.ic-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text2);margin-bottom:4px;}
+.ic-value{font-weight:600;font-size:15px;margin-bottom:2px;}
+.ic-sub{font-size:12px;color:var(--text2);}
+
+/* HOURS */
+.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.hour-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.hour-row:last-child{border-bottom:none;}
+.hour-day{color:var(--text2);}
+.hour-time{font-weight:600;}
+.hour-row.today .hour-day{color:var(--gold);}
+.hour-row.today .hour-time{color:var(--gold);}
+
+/* MAP */
+.map-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;height:200px;display:flex;align-items:center;justify-content:center;margin-top:20px;position:relative;cursor:pointer;}
+.map-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#1a1800,#001818);opacity:.8;}
+.map-placeholder{position:relative;z-index:1;text-align:center;color:var(--text2);}
+.map-pin{font-size:40px;margin-bottom:8px;display:block;animation:floatBob 3s ease-in-out infinite;}
+@keyframes floatBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+.map-placeholder p{font-size:13px;font-weight:600;}
+.map-placeholder span{font-size:12px;color:var(--text2);}
+
+/* SOCIAL */
+.social-row{display:flex;gap:10px;margin-top:16px;}
+.soc-btn{width:44px;height:44px;border-radius:10px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all .25s;text-decoration:none;}
+.soc-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.08);transform:translateY(-2px);}
+
+/* FAQ */
+.faq-section{padding:60px 48px;border-top:1px solid var(--border);}
+.faq-section h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;text-align:center;margin-bottom:8px;}
+.faq-section>p{color:var(--text2);text-align:center;margin-bottom:40px;}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;margin:0 auto;}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.faq-q{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:14px;transition:background .2s;}
+.faq-q:hover{background:var(--surface2);}
+.faq-q .icon{color:var(--gold);font-size:18px;transition:transform .3s;flex-shrink:0;}
+.faq-a{display:none;padding:0 20px 18px;color:var(--text2);font-size:14px;line-height:1.7;border-top:1px solid var(--border);}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .faq-q .icon{transform:rotate(45deg);}
+.faq-item.open .faq-q{background:rgba(201,168,76,.06);}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--surface);border:1px solid var(--border2);color:var(--text);padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;z-index:9999;transform:translateY(80px);opacity:0;transition:all .35s cubic-bezier(.175,.885,.32,1.275);box-shadow:0 8px 40px rgba(0,0,0,.6);display:flex;align-items:center;gap:10px;}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:60px 48px 32px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;}
+.f-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--gold);letter-spacing:4px;margin-bottom:12px;}
+.f-desc{font-size:13px;color:var(--text2);line-height:1.7;max-width:200px;margin-bottom:20px;}
+.f-socials{display:flex;gap:8px;}
+.fsoc{width:34px;height:34px;border-radius:7px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:all .2s;}
+.fsoc:hover{border-color:var(--gold);}
+footer h4{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;margin-bottom:20px;}
+footer ul{list-style:none;}
+footer li{margin-bottom:10px;}
+footer a{color:var(--text2);text-decoration:none;font-size:13px;transition:color .2s;}
+footer a:hover{color:var(--gold);}
+.f-bottom{grid-column:1/-1;border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;font-size:12px;color:var(--text2);}
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .page-hero{padding:100px 20px 40px;}
+  .contact-wrap{grid-template-columns:1fr;}
+  .form-section,.info-section{padding:40px 20px;border-right:none;border-bottom:1px solid var(--border);}
+  .form-row{grid-template-columns:1fr;}
+  .faq-section{padding:40px 20px;}
+  .faq-grid{grid-template-columns:1fr;}
+  footer{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html">VIBE</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="product.html">Shop</a></li>
+    <li><a href="product.html#electronics">Electronics</a></li>
+    <li><a href="product.html#fashion">Fashion</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="product.html" class="cart-pill">
+      🛒 Cart
+      <span class="badge" id="cart-badge">0</span>
+    </a>
+  </div>
+</nav>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a><span class="sep">›</span><span>Contact Us</span>
+  </div>
+  <p class="eyebrow">Get in Touch</p>
+  <h1>We'd Love to<br><em>Hear From You</em></h1>
+  <p>Questions, feedback, or just want to say hello — our team is here for you. We typically respond within 24 hours.</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="contact-wrap">
+
+  <!-- FORM -->
+  <div class="form-section">
+    <h2>Send a Message</h2>
+    <p>Fill in the form and we'll get back to you as soon as possible.</p>
+
+    <div id="contact-form">
+      <!-- Subject -->
+      <div class="form-group">
+        <label>What's this about?</label>
+        <div class="subject-pills">
+          <button class="spill active" onclick="selSubject(this,'Order Issue')">📦 Order Issue</button>
+          <button class="spill" onclick="selSubject(this,'Product Query')">❓ Product Query</button>
+          <button class="spill" onclick="selSubject(this,'Return / Refund')">↩️ Return / Refund</button>
+          <button class="spill" onclick="selSubject(this,'Feedback')">💬 Feedback</button>
+          <button class="spill" onclick="selSubject(this,'Other')">📝 Other</button>
+        </div>
+      </div>
+
+      <!-- Name / Email -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name *</label>
+          <input type="text" id="fname" placeholder="Priya" required>
+        </div>
+        <div class="form-group">
+          <label>Last Name *</label>
+          <input type="text" id="lname" placeholder="Sharma" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" id="email" placeholder="priya@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91 98765 43210">
+        <span class="form-note">Optional — for faster order-related support</span>
+      </div>
+
+      <div class="form-group">
+        <label>Order ID (if applicable)</label>
+        <input type="text" id="order-id" placeholder="e.g. VB-2026-88123">
+      </div>
+
+      <div class="form-group">
+        <label>Priority Level</label>
+        <select id="priority">
+          <option value="">Select priority</option>
+          <option value="low">🟢 Low — General inquiry</option>
+          <option value="medium">🟡 Medium — Need help soon</option>
+          <option value="high">🔴 High — Urgent issue</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Your Message *</label>
+        <textarea id="message" placeholder="Tell us how we can help you. The more detail, the better we can assist you..."></textarea>
+      </div>
+
+      <!-- Rating -->
+      <div class="form-group">
+        <label>How's your experience so far?</label>
+        <div class="rating-stars" id="rating-stars">
+          <span onclick="setRating(1)" data-v="1">☆</span>
+          <span onclick="setRating(2)" data-v="2">☆</span>
+          <span onclick="setRating(3)" data-v="3">☆</span>
+          <span onclick="setRating(4)" data-v="4">☆</span>
+          <span onclick="setRating(5)" data-v="5">☆</span>
+        </div>
+        <span id="rating-label" style="font-size:12px;color:var(--text2);">Click a star to rate</span>
+      </div>
+
+      <!-- Newsletter opt-in -->
+      <div class="form-group" style="flex-direction:row;align-items:center;gap:10px;background:var(--surface);padding:14px;border-radius:8px;border:1px solid var(--border);">
+        <input type="checkbox" id="newsletter" style="accent-color:var(--gold);width:16px;height:16px;">
+        <label for="newsletter" style="font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);cursor:pointer;">Subscribe to our newsletter for exclusive deals & updates</label>
+      </div>
+
+      <br>
+      <button class="btn btn-gold" style="width:100%;padding:16px;font-size:15px;" onclick="submitForm()">Send Message →</button>
+      <p style="text-align:center;font-size:12px;color:var(--text2);margin-top:12px;">🔒 Your data is secure and never shared with third parties.</p>
+    </div>
+
+    <!-- Success State -->
+    <div class="success-msg" id="success-msg">
+      <div class="success-ring">✓</div>
+      <h3>Message Sent!</h3>
+      <p>Thank you for reaching out. Our support team will reply to your email within <strong>24 hours</strong>.</p>
+      <br>
+      <p style="font-size:13px;color:var(--text2);">Reference ID: <strong id="ref-id" style="color:var(--gold);"></strong></p>
+      <br>
+      <a href="index.html" class="btn btn-gold">Back to Home</a>
+      <button class="btn btn-outline" style="margin-left:10px;" onclick="resetForm()">Send Another</button>
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="info-section">
+    <h2>Contact Information</h2>
+    <p>Multiple ways to reach us — choose what works best for you.</p>
+
+    <div class="info-card">
+      <div class="ic-icon">📧</div>
+      <div>
+        <div class="ic-label">Email Support</div>
+        <div class="ic-value">support@shopvibe.com</div>
+        <div class="ic-sub">We reply within 24 hours on business days</div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="ic-icon">📞</div>
+      <div>
+        <div class="ic-label">Phone Support</div>
+        <div class="ic-value">+91 80 4567 8900</div>
+        <div class="ic-sub">Mon–Sat, 9:00 AM – 7:00 PM IST</div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="ic-icon">💬</div>
+      <div>
+        <div class="ic-label">Live Chat</div>
+        <div class="ic-value">Available on Website</div>
+        <div class="ic-sub">Instant support during business hours</div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="ic-icon">📍</div>
+      <div>
+        <div class="ic-label">Office Address</div>
+        <div class="ic-value">VIBE HQ, 14th Floor, Prestige Tower</div>
+        <div class="ic-sub">MG Road, Bengaluru, Karnataka 560001</div>
+      </div>
+    </div>
+
+    <!-- Store Hours -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);margin-bottom:14px;">🕐 Support Hours</div>
+      <div class="hours-grid">
+        <div class="hour-row today"><span class="hour-day">Monday</span><span class="hour-time">9 AM – 7 PM</span></div>
+        <div class="hour-row"><span class="hour-day">Tuesday</span><span class="hour-time">9 AM – 7 PM</span></div>
+        <div class="hour-row"><span class="hour-day">Wednesday</span><span class="hour-time">9 AM – 7 PM</span></div>
+        <div class="hour-row"><span class="hour-day">Thursday</span><span class="hour-time">9 AM – 7 PM</span></div>
+        <div class="hour-row"><span class="hour-day">Friday</span><span class="hour-time">9 AM – 7 PM</span></div>
+        <div class="hour-row"><span class="hour-day">Saturday</span><span class="hour-time">10 AM – 5 PM</span></div>
+        <div class="hour-row"><span class="hour-day">Sunday</span><span class="hour-time" style="color:var(--red);">Closed</span></div>
+      </div>
+    </div>
+
+    <!-- Social -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);margin-bottom:14px;">📲 Follow Us</div>
+      <div class="social-row">
+        <a class="soc-btn" href="#" title="Twitter/X">𝕏</a>
+        <a class="soc-btn" href="#" title="Instagram">📷</a>
+        <a class="soc-btn" href="#" title="YouTube">▶</a>
+        <a class="soc-btn" href="#" title="LinkedIn">in</a>
+        <a class="soc-btn" href="#" title="WhatsApp">💬</a>
+      </div>
+      <p style="font-size:12px;color:var(--text2);margin-top:12px;">DM us on Instagram for the fastest response!</p>
+    </div>
+
+    <!-- Map -->
+    <div class="map-box" onclick="showToast('🗺️ Opening in Maps...')">
+      <div class="map-placeholder">
+        <span class="map-pin">📍</span>
+        <p>VIBE HQ — Bengaluru</p>
+        <span>Click to open in Maps</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+  <p>Quick answers to common questions</p>
+  <div class="faq-grid" id="faq-grid"></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-logo">VIBE</div>
+    <p class="f-desc">Premium shopping experience. Curated for you.</p>
+    <div class="f-socials">
+      <div class="fsoc">𝕏</div><div class="fsoc">📷</div><div class="fsoc">▶</div>
+    </div>
+  </div>
+  <div><h4>Shop</h4><ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="product.html">All Products</a></li>
+    <li><a href="product.html#sale">Sale 🔥</a></li>
+  </ul></div>
+  <div><h4>Help</h4><ul>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="#">Track Order</a></li>
+    <li><a href="#">Returns</a></li>
+    <li><a href="#">FAQ</a></li>
+  </ul></div>
+  <div><h4>Company</h4><ul>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Careers</a></li>
+  </ul></div>
+  <div class="f-bottom"><span>© 2026 VIBE Store. All rights reserved.</span><span>Privacy · Terms</span></div>
+</footer>
+
+<script>
+// CART BADGE
+const cart = JSON.parse(localStorage.getItem('vibe_cart') || '[]');
+document.getElementById('cart-badge').textContent = cart.reduce((s, i) => s + i.qty, 0);
+
+// SUBJECT SELECTION
+let selectedSubject = 'Order Issue';
+function selSubject(btn, subject) {
+  document.querySelectorAll('.spill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  selectedSubject = subject;
+}
+
+// STAR RATING
+let selectedRating = 0;
+function setRating(val) {
+  selectedRating = val;
+  const labels = ['', 'Poor 😕', 'Fair 🙂', 'Good 😊', 'Great 😄', 'Excellent 🤩'];
+  document.getElementById('rating-label').textContent = labels[val];
+  document.querySelectorAll('#rating-stars span').forEach((s, i) => {
+    s.textContent = i < val ? '★' : '☆';
+    s.classList.toggle('lit', i < val);
+    s.style.color = i < val ? '#e8c97a' : 'var(--surface2)';
+  });
+}
+
+// FORM SUBMIT
+function submitForm() {
+  const fname = document.getElementById('fname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (!fname) { showToast('⚠️ Please enter your first name.'); document.getElementById('fname').focus(); return; }
+  if (!email || !email.includes('@')) { showToast('⚠️ Please enter a valid email address.'); document.getElementById('email').focus(); return; }
+  if (!message) { showToast('⚠️ Please write your message.'); document.getElementById('message').focus(); return; }
+
+  // Simulate submit
+  const refId = 'VB-' + Date.now().toString().slice(-8);
+  document.getElementById('ref-id').textContent = refId;
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
+  showToast('✅ Message sent successfully!');
+}
+
+function resetForm() {
+  document.getElementById('contact-form').style.display = 'block';
+  document.getElementById('success-msg').style.display = 'none';
+  document.getElementById('fname').value = '';
+  document.getElementById('lname').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('phone').value = '';
+  document.getElementById('message').value = '';
+  document.getElementById('order-id').value = '';
+  selectedRating = 0;
+  document.getElementById('rating-label').textContent = 'Click a star to rate';
+  document.querySelectorAll('#rating-stars span').forEach(s => { s.textContent = '☆'; s.style.color = 'var(--surface2)'; });
+}
+
+// FAQ
+const FAQS = [
+  { q: 'How long does delivery take?', a: 'Standard delivery takes 3–5 business days. Express delivery (1–2 days) is available at checkout for select pincodes.' },
+  { q: 'Can I return or exchange a product?', a: 'Yes! We offer a hassle-free 30-day return policy. Products must be unused, in original packaging. Initiate returns from your account or contact us.' },
+  { q: 'Is my payment information secure?', a: 'Absolutely. We use 256-bit SSL encryption and are PCI-DSS compliant. We never store your card details on our servers.' },
+  { q: 'Do you offer Cash on Delivery?', a: 'Yes, COD is available for orders up to ₹25,000 in most pincodes across India. You can check eligibility at checkout.' },
+  { q: 'How do I track my order?', a: 'After dispatch, you\'ll receive a tracking link via SMS and email. You can also track via your account dashboard or our order tracking page.' },
+  { q: 'Are all products authentic?', a: '100% yes. We source directly from authorized distributors and brand partners. Every product includes a manufacturer warranty.' },
+  { q: 'Can I change or cancel my order?', a: 'Orders can be modified or cancelled within 2 hours of placement. After that, you may need to wait for delivery and initiate a return.' },
+  { q: 'Do you ship internationally?', a: 'Currently we ship within India only. International shipping is on our roadmap. Subscribe to our newsletter to be notified when it launches.' },
+];
+
+document.getElementById('faq-grid').innerHTML = FAQS.map((faq, i) => `
+  <div class="faq-item" id="faq-${i}">
+    <div class="faq-q" onclick="toggleFaq(${i})">
+      <span>${faq.q}</span>
+      <span class="icon">+</span>
+    </div>
+    <div class="faq-a">${faq.a}</div>
+  </div>
+`).join('');
+
+function toggleFaq(i) {
+  const item = document.getElementById('faq-' + i);
+  item.classList.toggle('open');
+}
+
+// TOAST
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t = setTimeout(() => t.classList.remove('show'), 3000);
+}
+</script>
+</body>
+</html>
