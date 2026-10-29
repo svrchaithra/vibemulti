@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIBE — Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0c0c;
+  --bg2: #141414;
+  --surface: #1a1a1a;
+  --surface2: #222222;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text: #f5f0e8;
+  --text2: rgba(245,240,232,0.5);
+  --gold: #c9a84c;
+  --gold2: #e8c97a;
+  --red: #e05252;
+  --green: #52c97a;
+  --r: 6px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(12,12,12,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold);letter-spacing:4px;text-decoration:none;}
+.nav-links{display:flex;gap:6px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text2);font-size:13px;font-weight:500;padding:8px 16px;border-radius:6px;transition:all .2s;letter-spacing:.5px;}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--surface2);}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+.nav-search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;transition:border-color .2s;}
+.nav-search:focus-within{border-color:var(--gold);}
+.nav-search input{background:none;border:none;color:var(--text);font-family:'Jost',sans-serif;font-size:13px;width:150px;outline:none;}
+.nav-search input::placeholder{color:var(--text2);}
+.cart-pill{display:flex;align-items:center;gap:8px;background:var(--gold);color:#0c0c0c;border:none;border-radius:8px;padding:9px 20px;font-family:'Jost',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
+.cart-pill:hover{background:var(--gold2);transform:translateY(-1px);}
+.cart-pill .badge{background:#0c0c0c;color:var(--gold);border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:66px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(201,168,76,.12) 0%,transparent 70%);top:-200px;right:-100px;pointer-events:none;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 60px 80px 48px;position:relative;z-index:1;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:20px;padding:5px 14px;font-size:11px;color:var(--gold);font-weight:600;letter-spacing:1px;margin-bottom:28px;width:fit-content;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(52px,6vw,84px);font-weight:900;line-height:1.0;letter-spacing:-1px;margin-bottom:24px;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-sub{color:var(--text2);font-size:17px;line-height:1.7;max-width:380px;margin-bottom:40px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:60px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 28px;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:14px;font-weight:600;transition:all .25s;border-radius:var(--r);text-decoration:none;letter-spacing:.3px;}
+.btn-gold{background:var(--gold);color:#0c0c0c;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.3);}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border2);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.hero-metrics{display:flex;gap:40px;}
+.metric h3{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--gold);}
+.metric p{font-size:12px;color:var(--text2);letter-spacing:.5px;margin-top:2px;}
+.hero-right{display:flex;align-items:center;justify-content:center;padding:60px 48px 60px 20px;position:relative;z-index:1;}
+.hero-product-stack{position:relative;width:360px;height:460px;}
+.hps-card{position:absolute;border-radius:16px;overflow:hidden;border:1px solid var(--border2);transition:transform .3s;}
+.hps1{width:240px;height:300px;background:linear-gradient(160deg,#1e1a12,#2a2010);top:0;left:0;transform:rotate(-5deg);box-shadow:0 20px 60px rgba(0,0,0,.6);}
+.hps2{width:240px;height:300px;background:linear-gradient(160deg,#12181e,#102028);top:40px;left:60px;transform:rotate(2deg);box-shadow:0 20px 60px rgba(0,0,0,.6);}
+.hps3{width:260px;height:320px;background:linear-gradient(160deg,#1a1a1a,#222);top:80px;left:30px;transform:rotate(-1deg);box-shadow:0 30px 80px rgba(0,0,0,.7);border-color:rgba(201,168,76,.25);}
+.hps-inner{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
+.hps-emoji{font-size:72px;}
+.hps-price{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);font-weight:700;}
+.hps-label{font-size:12px;color:var(--text2);}
+.floating-tag{position:absolute;bottom:20px;right:-20px;background:var(--gold);color:#0c0c0c;padding:10px 16px;border-radius:10px;font-size:12px;font-weight:700;box-shadow:0 8px 24px rgba(201,168,76,.4);animation:floatBob 3s ease-in-out infinite;}
+@keyframes floatBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+/* TICKER */
+.ticker{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 0;overflow:hidden;}
+.ticker-track{display:flex;gap:48px;width:max-content;animation:tick 22s linear infinite;}
+.t-item{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;color:var(--text2);letter-spacing:.5px;white-space:nowrap;}
+.t-item .dot{color:var(--gold);font-size:8px;}
+@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* SECTIONS */
+.sec{padding:80px 48px;}
+.sec-alt{background:var(--bg2);}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;}
+.sec-eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.1;}
+
+/* PRODUCT GRID */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;}
+.pcard{background:var(--surface);border-radius:12px;overflow:hidden;cursor:pointer;border:1px solid var(--border);transition:all .3s;position:relative;}
+.pcard:hover{border-color:rgba(201,168,76,.35);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.5);}
+.pimg{aspect-ratio:1/1.05;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:60px;position:relative;overflow:hidden;transition:all .3s;}
+.pcard:hover .pimg{background:var(--bg);}
+.pimg-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:flex-end;justify-content:center;padding:12px;transition:background .3s;}
+.pcard:hover .pimg-overlay{background:rgba(0,0,0,.3);}
+.quick-add{background:var(--gold);color:#0c0c0c;border:none;padding:9px 20px;border-radius:6px;font-family:'Jost',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transform:translateY(20px);opacity:0;transition:all .3s;letter-spacing:.5px;}
+.pcard:hover .quick-add{transform:translateY(0);opacity:1;}
+.pbadge{position:absolute;top:10px;left:10px;padding:3px 9px;border-radius:5px;font-size:10px;font-weight:700;letter-spacing:.5px;}
+.b-new{background:var(--gold);color:#0c0c0c;}
+.b-sale{background:var(--red);color:#fff;}
+.b-hot{background:#e07b52;color:#fff;}
+.wish{position:absolute;top:10px;right:10px;width:32px;height:32px;background:rgba(255,255,255,.1);backdrop-filter:blur(6px);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:all .2s;}
+.wish:hover{background:var(--red);}
+.pinfo{padding:16px;}
+.pcat{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;}
+.pname{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:8px;line-height:1.2;}
+.pprice{display:flex;gap:8px;align-items:center;}
+.pnow{font-weight:700;font-size:17px;}
+.pwas{text-decoration:line-through;color:var(--text2);font-size:13px;}
+.psave{background:rgba(224,82,82,.15);color:var(--red);font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;}
+.prating{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text2);margin-top:6px;}
+.stars{color:#e8c97a;}
+
+/* CATEGORIES */
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+.cat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 20px;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
+.cat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.1),transparent);opacity:0;transition:opacity .25s;}
+.cat-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-4px);}
+.cat-card:hover::before{opacity:1;}
+.cat-emoji{font-size:38px;display:block;margin-bottom:14px;}
+.cat-name{font-family:'Playfair Display',serif;font-weight:700;font-size:14px;margin-bottom:3px;}
+.cat-count{font-size:11px;color:var(--text2);}
+
+/* PROMO BANNER */
+.promo-split{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.promo-card{border-radius:16px;padding:48px 40px;min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;cursor:pointer;transition:transform .3s;position:relative;overflow:hidden;}
+.promo-card:hover{transform:scale(1.02);}
+.pc-a{background:linear-gradient(135deg,#1a1400,#2a2000);border:1px solid rgba(201,168,76,.25);}
+.pc-b{background:linear-gradient(135deg,#0a1a0a,#001a10);border:1px solid rgba(82,201,122,.2);}
+.promo-card h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:8px;}
+.promo-card p{color:rgba(245,240,232,.6);font-size:14px;margin-bottom:20px;}
+.promo-deco{position:absolute;width:180px;height:180px;border-radius:50%;top:-40px;right:-40px;opacity:.12;}
+.pd-a{background:var(--gold);}
+.pd-b{background:var(--green);}
+
+/* NEWSLETTER */
+.newsletter{background:linear-gradient(135deg,#1a1600,#1a1a1a);border:1px solid rgba(201,168,76,.2);border-radius:16px;padding:60px;text-align:center;}
+.newsletter h2{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;margin-bottom:12px;}
+.newsletter p{color:var(--text2);margin-bottom:32px;font-size:16px;}
+.nl-form{display:flex;gap:10px;max-width:440px;margin:0 auto;}
+.nl-form input{flex:1;background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:13px 18px;color:var(--text);font-family:'Jost',sans-serif;font-size:14px;outline:none;transition:border-color .2s;}
+.nl-form input:focus{border-color:var(--gold);}
+
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:60px 48px 32px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;}
+.f-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--gold);letter-spacing:4px;margin-bottom:12px;}
+.f-desc{font-size:13px;color:var(--text2);line-height:1.7;max-width:200px;margin-bottom:20px;}
+.f-socials{display:flex;gap:8px;}
+.fsoc{width:34px;height:34px;border-radius:7px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:all .2s;}
+.fsoc:hover{border-color:var(--gold);background:rgba(201,168,76,.1);}
+footer h4{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;margin-bottom:20px;}
+footer ul{list-style:none;}
+footer li{margin-bottom:10px;}
+footer a{color:var(--text2);text-decoration:none;font-size:13px;transition:color .2s;cursor:pointer;}
+footer a:hover{color:var(--gold);}
+.f-bottom{grid-column:1/-1;border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;font-size:12px;color:var(--text2);}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--surface);border:1px solid var(--border2);color:var(--text);padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;z-index:9999;transform:translateY(80px);opacity:0;transition:all .35s cubic-bezier(.175,.885,.32,1.275);box-shadow:0 8px 40px rgba(0,0,0,.6);display:flex;align-items:center;gap:10px;max-width:340px;}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .nav-search{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{padding:60px 20px;}
+  .sec{padding:60px 20px;}
+  .cat-grid{grid-template-columns:repeat(3,1fr);}
+  .promo-split{grid-template-columns:1fr;}
+  footer{grid-template-columns:1fr 1fr;}
+  .nl-form{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html">VIBE</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="product.html">Shop</a></li>
+    <li><a href="product.html#electronics">Electronics</a></li>
+    <li><a href="product.html#fashion">Fashion</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="nav-search">
+      <span style="color:var(--text2);font-size:15px;">⌕</span>
+      <input type="text" placeholder="Search products...">
+    </div>
+    <button class="cart-pill" onclick="window.location='product.html'">
+      🛒 Cart
+      <span class="badge" id="cart-badge">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">✦ New Collection 2026</div>
+    <h1 class="hero-title">Style That<br><em>Speaks</em><br>Volumes</h1>
+    <p class="hero-sub">Curated fashion, tech & lifestyle picks for people with taste. Premium quality, delivered fast.</p>
+    <div class="hero-btns">
+      <a href="product.html" class="btn btn-gold">Explore Collection →</a>
+      <a href="product.html#sale" class="btn btn-outline">View Deals</a>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric"><h3>48K+</h3><p>Customers</p></div>
+      <div class="metric"><h3>3K+</h3><p>Products</p></div>
+      <div class="metric"><h3>4.9★</h3><p>Rating</p></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-product-stack">
+      <div class="hps-card hps1"><div class="hps-inner"><span class="hps-emoji">👟</span><span class="hps-label">Fashion</span></div></div>
+      <div class="hps-card hps2"><div class="hps-inner"><span class="hps-emoji">⌚</span><span class="hps-label">Wearables</span></div></div>
+      <div class="hps-card hps3"><div class="hps-inner"><span class="hps-emoji">🎧</span><span class="hps-label">Best Seller</span><span class="hps-price">₹8,999</span></div></div>
+      <div class="floating-tag">🔥 40% Off Today!</div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- FEATURED PRODUCTS -->
+<div class="sec">
+  <div class="sec-head">
+    <div><p class="sec-eyebrow">Handpicked</p><h2 class="sec-title">Featured Products</h2></div>
+    <a href="product.html" class="btn btn-outline">View All →</a>
+  </div>
+  <div class="pgrid" id="featured-grid"></div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="sec sec-alt">
+  <div class="sec-head">
+    <div><p class="sec-eyebrow">Browse</p><h2 class="sec-title">Shop by Category</h2></div>
+  </div>
+  <div class="cat-grid">
+    <a href="product.html#electronics" class="cat-card" style="text-decoration:none;color:inherit;">
+      <span class="cat-emoji">📱</span><div class="cat-name">Electronics</div><div class="cat-count">28 Items</div>
+    </a>
+    <a href="product.html#fashion" class="cat-card" style="text-decoration:none;color:inherit;">
+      <span class="cat-emoji">👗</span><div class="cat-name">Fashion</div><div class="cat-count">44 Items</div>
+    </a>
+    <a href="product.html#gaming" class="cat-card" style="text-decoration:none;color:inherit;">
+      <span class="cat-emoji">🎮</span><div class="cat-name">Gaming</div><div class="cat-count">19 Items</div>
+    </a>
+    <a href="product.html#home" class="cat-card" style="text-decoration:none;color:inherit;">
+      <span class="cat-emoji">🏠</span><div class="cat-name">Home & Living</div><div class="cat-count">31 Items</div>
+    </a>
+    <a href="product.html#beauty" class="cat-card" style="text-decoration:none;color:inherit;">
+      <span class="cat-emoji">✨</span><div class="cat-name">Beauty</div><div class="cat-count">22 Items</div>
+    </a>
+  </div>
+</div>
+
+<!-- PROMO BANNERS -->
+<div class="sec">
+  <div class="promo-split">
+    <a href="product.html#electronics" class="promo-card pc-a" style="text-decoration:none;color:inherit;">
+      <div class="promo-deco pd-a"></div>
+      <h3>Tech Sale<br>Up to 40% Off</h3>
+      <p>Limited time deals on premium gadgets</p>
+      <span class="btn btn-gold" style="width:fit-content;">Shop Electronics →</span>
+    </a>
+    <a href="product.html#fashion" class="promo-card pc-b" style="text-decoration:none;color:inherit;">
+      <div class="promo-deco pd-b"></div>
+      <h3>New Season<br>Fashion Drops</h3>
+      <p>Fresh styles for every occasion</p>
+      <span class="btn btn-outline" style="width:fit-content;border-color:rgba(82,201,122,.5);color:#52c97a;">Shop Fashion →</span>
+    </a>
+  </div>
+</div>
+
+<!-- NEW ARRIVALS -->
+<div class="sec sec-alt">
+  <div class="sec-head">
+    <div><p class="sec-eyebrow">Just Landed</p><h2 class="sec-title">New Arrivals</h2></div>
+    <a href="product.html" class="btn btn-outline">See All →</a>
+  </div>
+  <div class="pgrid" id="new-grid"></div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="sec">
+  <div class="newsletter">
+    <h2>Get <em style="font-style:italic;color:var(--gold)">Exclusive</em> Deals</h2>
+    <p>Subscribe and be the first to know about new arrivals, flash sales & more.</p>
+    <div class="nl-form">
+      <input type="email" placeholder="Enter your email address">
+      <button class="btn btn-gold" onclick="showToast('🎉 You\'re subscribed! Welcome to VIBE.')">Subscribe</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-logo">VIBE</div>
+    <p class="f-desc">Premium shopping experience. Curated products, fast delivery, zero compromise.</p>
+    <div class="f-socials">
+      <div class="fsoc">𝕏</div><div class="fsoc">📷</div><div class="fsoc">▶</div><div class="fsoc">in</div>
+    </div>
+  </div>
+  <div>
+    <h4>Shop</h4>
+    <ul>
+      <li><a href="product.html">All Products</a></li>
+      <li><a href="product.html#electronics">Electronics</a></li>
+      <li><a href="product.html#fashion">Fashion</a></li>
+      <li><a href="product.html#gaming">Gaming</a></li>
+      <li><a href="product.html#sale">Sale 🔥</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Help</h4>
+    <ul>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="#">Track Order</a></li>
+      <li><a href="#">Returns</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Size Guide</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Company</h4>
+    <ul>
+      <li><a href="#">About VIBE</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Careers</a></li>
+      <li><a href="#">Sustainability</a></li>
+      <li><a href="#">Press</a></li>
+    </ul>
+  </div>
+  <div class="f-bottom">
+    <span>© 2026 VIBE Store. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Service</span>
+  </div>
+</footer>
+
+<script>
+const PRODUCTS=[
+  {id:1,name:'AirBud Pro Headphones',cat:'Electronics',price:8999,old:14999,rating:4.8,reviews:2341,badge:'sale',isNew:false,feat:true,emoji:'🎧'},
+  {id:2,name:'Apex Smart Watch',cat:'Electronics',price:12499,old:null,rating:4.9,reviews:1892,badge:'hot',isNew:false,feat:true,emoji:'⌚'},
+  {id:3,name:'StreetKicks Sneakers',cat:'Fashion',price:5999,old:null,rating:4.7,reviews:1230,badge:'new',isNew:true,feat:true,emoji:'👟'},
+  {id:4,name:'Crystal Serum Set',cat:'Beauty',price:2199,old:null,rating:4.8,reviews:445,badge:'new',isNew:true,feat:true,emoji:'✨'},
+  {id:5,name:'Luminary Desk Lamp',cat:'Home & Living',price:1799,old:null,rating:4.5,reviews:891,badge:'new',isNew:true,feat:false,emoji:'💡'},
+  {id:6,name:'Titan Gaming Mouse',cat:'Gaming',price:2499,old:3499,rating:4.6,reviews:987,badge:'sale',isNew:false,feat:false,emoji:'🖱️'},
+  {id:7,name:'Nova Pad Ultra',cat:'Electronics',price:34999,old:42999,rating:4.9,reviews:3102,badge:'hot',isNew:false,feat:false,emoji:'📱'},
+  {id:8,name:'OmegaFit Set',cat:'Fashion',price:3499,old:null,rating:4.3,reviews:278,badge:null,isNew:true,feat:false,emoji:'💪'},
+];
+
+const TICKS=['Free Shipping Above ₹999','New Arrivals Weekly','30-Day Easy Returns','Secure Encrypted Payments','Exclusive Member Deals','24/7 Customer Support','Express Delivery Available','100% Authentic Products'];
+
+function buildTicker(){
+  const items=[...TICKS,...TICKS];
+  document.getElementById('ticker').innerHTML=items.map(t=>`<span class="t-item"><span class="dot">◆</span>${t}</span>`).join('');
+}
+
+function makeCard(p){
+  const save=p.old?Math.round((1-p.price/p.old)*100):0;
+  const stars='★'.repeat(Math.floor(p.rating))+(p.rating%1>=.5?'½':'');
+  const bmap={sale:'SALE',hot:'🔥 HOT',new:'NEW'};
+  return `<div class="pcard" onclick="window.location='product.html?id=${p.id}'">
+    <div class="pimg">
+      ${p.badge?`<div class="pbadge b-${p.badge}">${bmap[p.badge]}</div>`:''}
+      <button class="wish" onclick="event.stopPropagation();showToast('Added to wishlist ♥')">♥</button>
+      <span style="position:relative;z-index:1;font-size:60px;">${p.emoji}</span>
+      <div class="pimg-overlay">
+        <button class="quick-add" onclick="event.stopPropagation();addCart(${p.id})">+ Quick Add</button>
+      </div>
+    </div>
+    <div class="pinfo">
+      <div class="pcat">${p.cat}</div>
+      <div class="pname">${p.name}</div>
+      <div class="pprice">
+        <span class="pnow">₹${p.price.toLocaleString()}</span>
+        ${p.old?`<span class="pwas">₹${p.old.toLocaleString()}</span><span class="psave">-${save}%</span>`:''}
+      </div>
+      <div class="prating"><span class="stars">${stars}</span> ${p.rating} <span>(${p.reviews.toLocaleString()})</span></div>
+    </div>
+  </div>`;
+}
+
+let cart=JSON.parse(localStorage.getItem('vibe_cart')||'[]');
+function saveCart(){localStorage.setItem('vibe_cart',JSON.stringify(cart));}
+function addCart(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  const ex=cart.find(x=>x.id===id);
+  if(ex)ex.qty++;else cart.push({...p,qty:1});
+  saveCart();
+  document.getElementById('cart-badge').textContent=cart.reduce((s,i)=>s+i.qty,0);
+  showToast(`🛒 "${p.name}" added to cart!`);
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t=setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+buildTicker();
+document.getElementById('featured-grid').innerHTML=PRODUCTS.filter(p=>p.feat).map(makeCard).join('');
+document.getElementById('new-grid').innerHTML=PRODUCTS.filter(p=>p.isNew).slice(0,4).map(makeCard).join('');
+document.getElementById('cart-badge').textContent=cart.reduce((s,i)=>s+i.qty,0);
+</script>
+</body>
+</html>
